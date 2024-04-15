@@ -30,14 +30,18 @@
         app:layout_constraintTop_toBottomOf="@+id/btnClient"
         app:layout_constraintVertical_bias="0.383" />
 
-    <TextView
-        android:id="@+id/textViewTitle"
-        style="@style/TextAppearance.AppCompat.Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title_tradelink"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="373dp"
+        android:layout_height="223dp"
         app:layout_constraintBottom_toTopOf="@+id/btnClient"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.666"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/animation_light" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
