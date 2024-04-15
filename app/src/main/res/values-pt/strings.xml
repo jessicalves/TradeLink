@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TradeLink</string>
+    <string name="btn_client">Cliente</string>
+    <string name="btn_representative">Representante</string>
+    <string name="title_tradelink">TradeLink</string>
+</resources>
