@@ -3,4 +3,10 @@
     <string name="btn_client">Client</string>
     <string name="btn_representative">Representative</string>
     <string name="title_tradelink">TradeLink</string>
+    <string name="btn_login">LOG IN</string>
+    <string name="text_view_register">Register</string>
+    <string name="text_view_recover">Recover Password</string>
+    <string name="hint_password">Password</string>
+    <string name="text_view_client">Client</string>
+    <string name="text_view_representative">Representative</string>
 </resources>

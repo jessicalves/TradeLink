@@ -4,4 +4,10 @@
     <string name="btn_client">Cliente</string>
     <string name="btn_representative">Representante</string>
     <string name="title_tradelink">TradeLink</string>
+    <string name="btn_login">ENTRAR</string>
+    <string name="text_view_register">Cadastrar</string>
+    <string name="text_view_recover">Recuperar Senha</string>
+    <string name="hint_password">Senha</string>
+    <string name="text_view_client">Cliente</string>
+    <string name="text_view_representative">Representante</string>
 </resources>
