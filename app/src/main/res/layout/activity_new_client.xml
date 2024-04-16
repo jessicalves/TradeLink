@@ -5,7 +5,7 @@
     android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.NewClientRegisterActivity">
+    tools:context=".activities.NewClientActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"

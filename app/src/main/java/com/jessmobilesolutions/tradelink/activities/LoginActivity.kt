@@ -28,18 +28,18 @@ class LoginActivity : AppCompatActivity() {
     private fun setupView() {
         val loginType = intent.getStringExtra("login_type")
         val newRegister = findViewById<TextView>(R.id.textViewRegister)
-        var intent = Intent(this, NewClientRegisterActivity::class.java)
+        var intent = Intent(this, NewClientActivity::class.java)
 
         loginType?.let {
             when (it) {
                 "client" -> {
                     findViewById<TextView>(R.id.textViewTitle).text = getString(R.string.text_view_client)
-                    intent = Intent(this, NewClientRegisterActivity::class.java)
+                    intent = Intent(this, NewClientActivity::class.java)
                 }
 
                 "representative" -> {
                     findViewById<TextView>(R.id.textViewTitle).text = getString(R.string.text_view_representative)
-                    intent = Intent(this, NewRepresentativeRegisterActivity::class.java)
+                    intent = Intent(this, NewRepresentativeActivity::class.java)
                 }
 
                 else -> {

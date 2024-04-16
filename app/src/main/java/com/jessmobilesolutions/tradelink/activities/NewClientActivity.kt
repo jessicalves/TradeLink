@@ -3,12 +3,8 @@ package com.jessmobilesolutions.tradelink.activities
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -17,9 +13,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.jessmobilesolutions.tradelink.R
-import com.jessmobilesolutions.tradelink.models.Client
 
-class NewClientRegisterActivity : AppCompatActivity() {
+class NewClientActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var dataBase: FirebaseFirestore
     private lateinit var email: EditText
@@ -32,7 +27,7 @@ class NewClientRegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_new_client_register)
+        setContentView(R.layout.activity_new_client)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -82,11 +77,14 @@ class NewClientRegisterActivity : AppCompatActivity() {
                                 Log.w(TAG, "Error adding document", e)
                             }
                     }
-                    Toast.makeText(this, "Usuário criado com sucesso!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.user_created), Toast.LENGTH_SHORT).show()
                     finish()
 
                 } else {
-                    Toast.makeText(this, "Falha ao criar usuário: ${task.exception?.message}", Toast.LENGTH_SHORT)
+                    Toast.makeText(
+                        this,
+                        getString(R.string.failed_create_user, task.exception?.message), Toast.LENGTH_SHORT
+                    )
                         .show()
                 }
             }

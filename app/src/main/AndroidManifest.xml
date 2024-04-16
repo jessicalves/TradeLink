@@ -13,10 +13,10 @@
         android:theme="@style/Theme.TradeLink"
         tools:targetApi="31" >
         <activity
-            android:name=".activities.NewRepresentativeRegisterActivity"
+            android:name=".activities.NewRepresentativeActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.NewClientRegisterActivity"
+            android:name=".activities.NewClientActivity"
             android:exported="false" />
         <activity
             android:name=".activities.LoginActivity"

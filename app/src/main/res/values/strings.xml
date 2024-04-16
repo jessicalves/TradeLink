@@ -19,4 +19,6 @@
     <string name="edit_text_stade">State</string>
     <string name="edit_text_represented_company">Represented Company</string>
     <string name="edit_text_niche">Niche</string>
+    <string name="user_created">User created successfully!</string>
+    <string name="failed_create_user">Failed to create user: %1$s</string>
 </resources>
