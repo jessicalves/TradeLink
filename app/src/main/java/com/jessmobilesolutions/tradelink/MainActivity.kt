@@ -8,9 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.airbnb.lottie.LottieAnimationView
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import com.jessmobilesolutions.tradelink.activities.LoginActivity
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -22,6 +26,14 @@ class MainActivity : AppCompatActivity() {
         }
         setupAnimation()
         setupView()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+//            reload()
+        }
     }
 
     private fun setupAnimation() {
@@ -36,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         val btnClient = findViewById<Button>(R.id.btnClient)
         val btnRepresentative = findViewById<Button>(R.id.btnRepresentative)
         val loginIntent = Intent(this, LoginActivity::class.java)
-        
+        auth = Firebase.auth
         btnClient.setOnClickListener {
             loginIntent.putExtra("login_type", "client")
             startActivity(loginIntent)

@@ -2,17 +2,23 @@ package com.jessmobilesolutions.tradelink.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import com.jessmobilesolutions.tradelink.R
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var newRegister: TextView
     private lateinit var auth: FirebaseAuth
+    private lateinit var btnLogin: Button
+    private lateinit var email: TextView
+    private lateinit var password: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -29,6 +35,10 @@ class LoginActivity : AppCompatActivity() {
         val loginType = intent.getStringExtra("login_type")
         val newRegister = findViewById<TextView>(R.id.textViewRegister)
         var intent = Intent(this, NewClientActivity::class.java)
+        auth = Firebase.auth
+        btnLogin = findViewById(R.id.btnLogin)
+        email = findViewById(R.id.editTextEmailAddress)
+        password = findViewById(R.id.editTextPassword)
 
         loginType?.let {
             when (it) {
@@ -50,6 +60,27 @@ class LoginActivity : AppCompatActivity() {
         newRegister.setOnClickListener {
             startActivity(intent)
         }
+
+        btnLogin.setOnClickListener { 
+            login()
+        }
+    }
+    
+    private fun login(){
+        auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    //NET SCREEN
+                } else {
+                    Toast.makeText(
+                        baseContext,
+                        "Authentication failed.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                    //NEXT SCREEN
+                }
+            }
     }
 
 }
