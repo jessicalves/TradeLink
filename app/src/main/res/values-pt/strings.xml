@@ -10,4 +10,14 @@
     <string name="hint_password">Senha</string>
     <string name="text_view_client">Cliente</string>
     <string name="text_view_representative">Representante</string>
+    <string name="text_view_title_new_account">Nova Conta</string>
+    <string name="your_name">Seu nome</string>
+    <string name="your_email">E-mail profissional</string>
+    <string name="your_password">Senha</string>
+    <string name="btn_new_register">Cadastrar</string>
+    <string name="txt_view_phone">Telefone</string>
+    <string name="edit_text_city">Cidade</string>
+    <string name="edit_text_stade">Estado</string>
+    <string name="edit_text_represented_company">Empresa Representada</string>
+    <string name="edit_text_niche">Nicho</string>
 </resources>

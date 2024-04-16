@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "349968223867",
+    "project_id": "tradelink-ecb77",
+    "storage_bucket": "tradelink-ecb77.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:349968223867:android:891859efb31456d34adcde",
+        "android_client_info": {
+          "package_name": "com.jessmobilesolutions.tradelink"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADS5xH8G4kOIZdOK4ztQGkNNufeDS7x0E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

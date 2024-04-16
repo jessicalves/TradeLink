@@ -9,4 +9,14 @@
     <string name="hint_password">Password</string>
     <string name="text_view_client">Client</string>
     <string name="text_view_representative">Representative</string>
+    <string name="text_view_title_new_account">New Account</string>
+    <string name="your_name">Your name</string>
+    <string name="your_email">Professional email</string>
+    <string name="your_password">Password</string>
+    <string name="btn_new_register">Register</string>
+    <string name="txt_view_phone">Phone</string>
+    <string name="edit_text_city">City</string>
+    <string name="edit_text_stade">State</string>
+    <string name="edit_text_represented_company">Represented Company</string>
+    <string name="edit_text_niche">Niche</string>
 </resources>

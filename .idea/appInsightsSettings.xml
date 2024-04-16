@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.jessmobilesolutions.tradelink" />
+                  <option name="mobileSdkAppId" value="1:349968223867:android:891859efb31456d34adcde" />
+                  <option name="projectId" value="tradelink-ecb77" />
+                  <option name="projectNumber" value="349968223867" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
