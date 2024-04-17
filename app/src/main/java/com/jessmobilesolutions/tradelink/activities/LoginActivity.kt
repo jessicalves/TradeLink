@@ -9,16 +9,20 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.jessmobilesolutions.tradelink.R
+import com.jessmobilesolutions.tradelink.viewmodels.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {
+    private lateinit var viewModel: LoginViewModel
     private lateinit var auth: FirebaseAuth
     private lateinit var btnLogin: Button
     private lateinit var email: TextView
     private lateinit var password: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,7 +32,10 @@ class LoginActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         setupView()
+        observeLoginResult()
     }
 
     private fun setupView() {
@@ -56,31 +63,34 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
-
         newRegister.setOnClickListener {
             startActivity(intent)
         }
 
-        btnLogin.setOnClickListener { 
+        btnLogin.setOnClickListener {
             login()
         }
     }
-    
-    private fun login(){
-        auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    //NET SCREEN
-                } else {
-                    Toast.makeText(
-                        baseContext,
-                        "Authentication failed.",
-                        Toast.LENGTH_SHORT,
-                    ).show()
-                    //NEXT SCREEN
-                }
+
+    private fun observeLoginResult() {
+        viewModel.loginResult.observe(this) { success ->
+            if (success) {
+                val user = viewModel.getCurrentUser()
+                val intent = Intent(this, CompanyActivity::class.java)
+                startActivity(intent)
+
+            } else {
+                Toast.makeText(
+                    baseContext,
+                    "Authentication failed.",
+                    Toast.LENGTH_SHORT,
+                ).show()
+                // Realize as ações necessárias para um login falhado
             }
+        }
     }
 
+    private fun login() {
+        viewModel.login(email.text.toString(), password.text.toString())
+    }
 }

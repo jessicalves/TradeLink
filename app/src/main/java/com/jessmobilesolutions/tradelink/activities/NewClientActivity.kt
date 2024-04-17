@@ -1,8 +1,6 @@
 package com.jessmobilesolutions.tradelink.activities
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -10,13 +8,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import androidx.lifecycle.ViewModelProvider
 import com.jessmobilesolutions.tradelink.R
+import com.jessmobilesolutions.tradelink.viewmodels.NewClientViewModel
 
 class NewClientActivity : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth
-    private lateinit var dataBase: FirebaseFirestore
+    private lateinit var viewModel: NewClientViewModel
     private lateinit var email: EditText
     private lateinit var password: EditText
     private lateinit var name: EditText
@@ -24,6 +21,7 @@ class NewClientActivity : AppCompatActivity() {
     private lateinit var state: EditText
     private lateinit var phone: EditText
     private lateinit var btnRegister: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -34,12 +32,11 @@ class NewClientActivity : AppCompatActivity() {
             insets
         }
 
+        viewModel = ViewModelProvider(this)[NewClientViewModel::class.java]
         setupView()
     }
 
     private fun setupView() {
-        auth = FirebaseAuth.getInstance()
-        dataBase = FirebaseFirestore.getInstance()
         email = findViewById(R.id.editTextEmail)
         password = findViewById(R.id.editTextPassword)
         name = findViewById(R.id.editTextName)
@@ -53,40 +50,20 @@ class NewClientActivity : AppCompatActivity() {
     }
 
     private fun createNewUser() {
-        auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val uid = auth.currentUser?.uid
-                    val user = hashMapOf(
-                        "uid" to uid,
-                        "email" to email.text.toString(),
-                        "name" to name.text.toString(),
-                        "phone" to phone.text.toString(),
-                        "city" to city.text.toString(),
-                        "state" to state.text.toString(),
-                        "userType" to "client"
-                    )
-                    uid?.let {
-                        dataBase.collection("users")
-                            .document(it)
-                            .set(user)
-                            .addOnSuccessListener {
-                                Log.d(TAG, "DocumentSnapshot added with ID: $it")
-                            }
-                            .addOnFailureListener { e ->
-                                Log.w(TAG, "Error adding document", e)
-                            }
-                    }
-                    Toast.makeText(this, getString(R.string.user_created), Toast.LENGTH_SHORT).show()
-                    finish()
-
-                } else {
-                    Toast.makeText(
-                        this,
-                        getString(R.string.failed_create_user, task.exception?.message), Toast.LENGTH_SHORT
-                    )
-                        .show()
-                }
+        viewModel.createNewUser(
+            email.text.toString(),
+            password.text.toString(),
+            name.text.toString(),
+            city.text.toString(),
+            state.text.toString(),
+            phone.text.toString(),
+            onSuccess = {
+                Toast.makeText(this, getString(R.string.user_created), Toast.LENGTH_SHORT).show()
+                finish()
+            },
+            onFailure = { message ->
+                Toast.makeText(this, getString(R.string.failed_create_user, message), Toast.LENGTH_SHORT).show()
             }
+        )
     }
 }
