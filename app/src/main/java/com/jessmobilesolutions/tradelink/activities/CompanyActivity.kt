@@ -35,7 +35,7 @@ class CompanyActivity : AppCompatActivity() {
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = RepresentativeAdapter(emptyList()) // Inicializa o adaptador com uma lista vazia
+        adapter = RepresentativeAdapter(emptyList()) 
         recyclerView.adapter = adapter
 
         val searchEditText: EditText = findViewById(R.id.searchEditText)

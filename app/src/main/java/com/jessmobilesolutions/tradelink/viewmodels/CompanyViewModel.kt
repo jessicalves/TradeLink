@@ -34,7 +34,6 @@ class CompanyViewModel : ViewModel() {
                 _representatives.value = representativeList
             }
             .addOnFailureListener {
-                // Handle failure
             }
     }
 
