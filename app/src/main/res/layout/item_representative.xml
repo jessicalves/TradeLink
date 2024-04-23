@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- item_representative.xml -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -19,18 +18,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"/>
-    
+
     <TextView
         android:id="@+id/nicheTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"/>
-    
-    <TextView
-        android:id="@+id/cityTextView"
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp"/>
-    
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/cityTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="4dp"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="16sp"
+            android:padding="2dp"/>
+
+        <TextView
+            android:id="@+id/stateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="4dp"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
 
 </LinearLayout>

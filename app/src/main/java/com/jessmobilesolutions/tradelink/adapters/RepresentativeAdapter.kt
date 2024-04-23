@@ -17,12 +17,14 @@ class RepresentativeAdapter(private var representatives: List<Representative>) :
         private val nicheTextView: TextView = itemView.findViewById(R.id.nicheTextView)
         private val representativeTextView: TextView = itemView.findViewById(R.id.representativeTextView)
         private val cityTextView: TextView = itemView.findViewById(R.id.cityTextView)
+        private val stateTextView: TextView = itemView.findViewById(R.id.stateTextView)
 
         fun bind(representative: Representative) {
             companyTextView.text = representative.representedCompany
             nicheTextView.text = representative.niche
             representativeTextView.text = representative.name
             cityTextView.text = representative.city
+            stateTextView.text = representative.state
         }
     }
 
