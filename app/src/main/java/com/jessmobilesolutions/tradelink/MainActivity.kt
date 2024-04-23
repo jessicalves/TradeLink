@@ -9,12 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.airbnb.lottie.LottieAnimationView
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.jessmobilesolutions.tradelink.activities.CompanyActivity
 import com.jessmobilesolutions.tradelink.activities.LoginActivity
+import com.jessmobilesolutions.tradelink.activities.RepresentativeActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -78,7 +77,7 @@ class MainActivity : AppCompatActivity() {
                             val homeIntent = if (type == "client") {
                                 Intent(this, CompanyActivity::class.java)
                             } else {
-                                Intent(this, CompanyActivity::class.java)
+                                Intent(this, RepresentativeActivity::class.java)
                             }
                             startActivity(homeIntent)
                         }

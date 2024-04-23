@@ -24,4 +24,9 @@
     <string name="fill_all_fields">Fill in all fields.</string>
     <string name="search">Search</string>
     <string name="company">Companies</string>
+    <string name="title_page_representative">Representative Panel</string>
+    <string name="btn_visits">Visit Requests</string>
+    <string name="btn_catalog">Product Catalog</string>
+    <string name="btn_new_sale">New Sale</string>
+    <string name="btn_sales">Sales</string>
 </resources>
