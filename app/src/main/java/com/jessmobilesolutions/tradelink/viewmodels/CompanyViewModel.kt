@@ -12,6 +12,7 @@ class CompanyViewModel : ViewModel() {
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     private val _representatives = MutableLiveData<List<Representative>>()
     val representatives: LiveData<List<Representative>> = _representatives
+    private lateinit var originalRepresentatives: List<Representative> 
 
     fun loadRepresentatives() {
         db.collection("users")
@@ -32,13 +33,15 @@ class CompanyViewModel : ViewModel() {
                     representativeList.add(representative)
                 }
                 _representatives.value = representativeList
+                originalRepresentatives = representativeList 
             }
             .addOnFailureListener {
+                // Handle failure
             }
     }
 
     fun filterRepresentatives(query: String) {
-        val currentList = _representatives.value.orEmpty()
+        val currentList = if (::originalRepresentatives.isInitialized) originalRepresentatives else emptyList()
         val filteredList = if (query.isEmpty()) {
             currentList
         } else {
@@ -50,3 +53,4 @@ class CompanyViewModel : ViewModel() {
         _representatives.value = filteredList
     }
 }
+
