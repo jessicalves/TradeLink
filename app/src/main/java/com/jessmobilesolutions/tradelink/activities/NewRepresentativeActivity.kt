@@ -1,8 +1,10 @@
 package com.jessmobilesolutions.tradelink.activities
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +27,7 @@ class NewRepresentativeActivity : AppCompatActivity() {
     private lateinit var state: EditText
     private lateinit var phone: EditText
     private lateinit var btnRegister: Button
+    private lateinit var progressBar: ProgressBar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -39,6 +42,17 @@ class NewRepresentativeActivity : AppCompatActivity() {
         setupView()
     }
 
+    private fun validateFields(): Boolean {
+        return email.text.isNotBlank() &&
+                password.text.isNotBlank() &&
+                name.text.isNotBlank() &&
+                city.text.isNotBlank() &&
+                company.text.isNotBlank() &&
+                niche.text.isNotBlank() &&
+                state.text.isNotBlank() &&
+                phone.text.isNotBlank()
+    }
+
     private fun setupView() {
         email = findViewById(R.id.editTextEmail)
         password = findViewById(R.id.editTextPassword)
@@ -49,8 +63,15 @@ class NewRepresentativeActivity : AppCompatActivity() {
         state = findViewById(R.id.editTextState)
         phone = findViewById(R.id.editTextPhone)
         btnRegister = findViewById(R.id.btnNewRegister)
+        progressBar = findViewById(R.id.progressBar)
+        
         btnRegister.setOnClickListener {
-            createNewUser()
+            if (validateFields()) {
+                showProgressBar()
+                createNewUser()
+            } else {
+                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -65,12 +86,22 @@ class NewRepresentativeActivity : AppCompatActivity() {
             state.text.toString(),
             phone.text.toString(),
             onSuccess = {
+                hideProgressBar()
                 Toast.makeText(this, getString(R.string.user_created), Toast.LENGTH_SHORT).show()
                 finish()
             },
             onFailure = { message ->
+                hideProgressBar()
                 Toast.makeText(this, getString(R.string.failed_create_user, message), Toast.LENGTH_SHORT).show()
             }
         )
+    }
+
+    private fun showProgressBar() {
+        progressBar.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressBar() {
+        progressBar.visibility = View.GONE
     }
 }
