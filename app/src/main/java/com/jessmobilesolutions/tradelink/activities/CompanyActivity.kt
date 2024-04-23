@@ -29,26 +29,28 @@ class CompanyActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        
-        viewModel = ViewModelProvider(this)[CompanyViewModel::class.java]
+
+        viewModel = ViewModelProvider(this).get(CompanyViewModel::class.java)
         viewModel.loadRepresentatives()
-        
+
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = RepresentativeAdapter(viewModel.representatives)
+        adapter = RepresentativeAdapter(emptyList()) // Inicializa o adaptador com uma lista vazia
         recyclerView.adapter = adapter
-        
+
         val searchEditText: EditText = findViewById(R.id.searchEditText)
         searchEditText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                adapter.filter(s.toString())
+                viewModel.filterRepresentatives(s.toString())
             }
 
-            override fun afterTextChanged(s: Editable?) {
-            }
+            override fun afterTextChanged(s: Editable?) {}
         })
+
+        viewModel.representatives.observe(this) { representatives ->
+            adapter.updateList(representatives)
+        }
     }
 }

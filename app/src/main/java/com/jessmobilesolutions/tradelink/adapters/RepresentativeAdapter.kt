@@ -12,8 +12,6 @@ import java.util.*
 class RepresentativeAdapter(private var representatives: List<Representative>) :
     RecyclerView.Adapter<RepresentativeAdapter.RepresentativeViewHolder>() {
 
-    private var filteredRepresentatives: List<Representative> = representatives
-
     inner class RepresentativeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val companyTextView: TextView = itemView.findViewById(R.id.companyTextView)
         private val nicheTextView: TextView = itemView.findViewById(R.id.nicheTextView)
@@ -34,22 +32,15 @@ class RepresentativeAdapter(private var representatives: List<Representative>) :
     }
 
     override fun onBindViewHolder(holder: RepresentativeViewHolder, position: Int) {
-        holder.bind(filteredRepresentatives[position])
+        holder.bind(representatives[position])
     }
 
     override fun getItemCount(): Int {
-        return filteredRepresentatives.size
+        return representatives.size
     }
 
-    fun filter(text: String) {
-        filteredRepresentatives = if (text.isEmpty()) {
-            representatives
-        } else {
-            representatives.filter { representative ->
-                representative.representedCompany.toLowerCase(Locale.getDefault()).contains(text.toLowerCase(Locale.getDefault())) ||
-                        representative.niche.toLowerCase(Locale.getDefault()).contains(text.toLowerCase(Locale.getDefault()))
-            }
-        }
+    fun updateList(newList: List<Representative>) {
+        representatives = newList
         notifyDataSetChanged()
     }
 }
