@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.jessmobilesolutions.tradelink.R
 import com.jessmobilesolutions.tradelink.viewmodels.LoginViewModel
 
@@ -25,6 +26,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var email: TextView
     private lateinit var password: TextView
     private lateinit var progressBar: ProgressBar
+    private lateinit var firestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +52,8 @@ class LoginActivity : AppCompatActivity() {
         email = findViewById(R.id.editTextEmailAddress)
         password = findViewById(R.id.editTextPassword)
         progressBar = findViewById(R.id.progressBar)
-        
+        firestore = FirebaseFirestore.getInstance()
+
         loginType?.let {
             when (it) {
                 "client" -> {
@@ -80,8 +83,26 @@ class LoginActivity : AppCompatActivity() {
         viewModel.loginResult.observe(this) { success ->
             if (success) {
                 val user = viewModel.getCurrentUser()
-                val intent = Intent(this, CompanyActivity::class.java)
-                startActivity(intent)
+                user?.let { user ->
+                    firestore.collection("users").document(user.uid)
+                        .get()
+                        .addOnSuccessListener { document ->
+                            if (document != null && document.exists()) {
+                                val userType = document.getString("userType")
+                                userType?.let { type ->
+                                    val homeIntent = if (type == "client") {
+                                        Intent(this, CompanyActivity::class.java)
+                                    } else {
+                                        Intent(this, RepresentativeActivity::class.java)
+                                    }
+                                    startActivity(homeIntent)
+                                }
+                            }
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(this, "Failed to fetch user details", Toast.LENGTH_SHORT).show()
+                        }
+                }
 
             } else {
                 Toast.makeText(
@@ -89,18 +110,16 @@ class LoginActivity : AppCompatActivity() {
                     "Authentication failed.",
                     Toast.LENGTH_SHORT,
                 ).show()
-                // Realize as ações necessárias para um login falhado
             }
             progressBar.visibility = View.GONE
         }
     }
 
     private fun login() {
-        if(email.text.isNotEmpty() && password.text.isNotEmpty()){
+        if (email.text.isNotEmpty() && password.text.isNotEmpty()) {
             progressBar.visibility = View.VISIBLE
             viewModel.login(email.text.toString(), password.text.toString())
-        }
-        else{
+        } else {
             Toast.makeText(
                 baseContext,
                 getString(R.string.fill_all_fields),

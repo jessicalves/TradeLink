@@ -2,19 +2,20 @@ package com.jessmobilesolutions.tradelink
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.airbnb.lottie.LottieAnimationView
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.jessmobilesolutions.tradelink.activities.CompanyActivity
 import com.jessmobilesolutions.tradelink.activities.LoginActivity
+import com.jessmobilesolutions.tradelink.activities.RepresentativeActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -36,10 +37,27 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         val currentUser = auth.currentUser
         if (currentUser != null) {
+            showLoadingView()
             redirectToHome()
+        } else {
+            hideLoadingView()
         }
     }
 
+    private fun showLoadingView() {
+        findViewById<ProgressBar>(R.id.loadingView).visibility = View.VISIBLE
+        findViewById<LottieAnimationView>(R.id.animation_view).visibility = View.GONE
+        findViewById<Button>(R.id.btnClient).visibility = View.GONE
+        findViewById<Button>(R.id.btnRepresentative).visibility = View.GONE
+    }
+
+    private fun hideLoadingView() {
+        findViewById<ProgressBar>(R.id.loadingView).visibility = View.GONE
+        findViewById<LottieAnimationView>(R.id.animation_view).visibility = View.VISIBLE
+        findViewById<Button>(R.id.btnClient).visibility = View.VISIBLE
+        findViewById<Button>(R.id.btnRepresentative).visibility = View.VISIBLE
+    }
+    
     private fun setupAnimation() {
         val currentNightMode = resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK
         val isNightMode = currentNightMode == android.content.res.Configuration.UI_MODE_NIGHT_YES
@@ -54,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         val loginIntent = Intent(this, LoginActivity::class.java)
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
-        
+
         btnClient.setOnClickListener {
             loginIntent.putExtra("login_type", "client")
             startActivity(loginIntent)
@@ -78,7 +96,7 @@ class MainActivity : AppCompatActivity() {
                             val homeIntent = if (type == "client") {
                                 Intent(this, CompanyActivity::class.java)
                             } else {
-                                Intent(this, CompanyActivity::class.java)
+                                Intent(this, RepresentativeActivity::class.java)
                             }
                             startActivity(homeIntent)
                         }

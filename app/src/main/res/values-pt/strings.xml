@@ -25,4 +25,9 @@
     <string name="fill_all_fields">Preencha todos os campos.</string>
     <string name="search">Pesquisar</string>
     <string name="company">Empresas</string>
+    <string name="title_page_representative">Painel do Representante</string>
+    <string name="btn_visits">Solicitações de Visitas</string>
+    <string name="btn_catalog">Catálogo de Produtos</string>
+    <string name="btn_new_sale">Nova Venda</string>
+    <string name="btn_sales">Vendas</string>
 </resources>
