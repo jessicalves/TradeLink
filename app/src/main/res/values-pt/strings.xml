@@ -23,4 +23,6 @@
     <string name="user_created">Usuário criado com sucesso!</string>
     <string name="failed_create_user">Falha ao criar usuário: %1$s</string>
     <string name="fill_all_fields">Preencha todos os campos.</string>
+    <string name="search">Pesquisar</string>
+    <string name="company">Empresas</string>
 </resources>
