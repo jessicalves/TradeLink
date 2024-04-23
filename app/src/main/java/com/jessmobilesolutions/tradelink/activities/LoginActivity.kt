@@ -2,7 +2,9 @@ package com.jessmobilesolutions.tradelink.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -22,6 +24,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var btnLogin: Button
     private lateinit var email: TextView
     private lateinit var password: TextView
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +49,8 @@ class LoginActivity : AppCompatActivity() {
         btnLogin = findViewById(R.id.btnLogin)
         email = findViewById(R.id.editTextEmailAddress)
         password = findViewById(R.id.editTextPassword)
-
+        progressBar = findViewById(R.id.progressBar)
+        
         loginType?.let {
             when (it) {
                 "client" -> {
@@ -87,10 +91,21 @@ class LoginActivity : AppCompatActivity() {
                 ).show()
                 // Realize as ações necessárias para um login falhado
             }
+            progressBar.visibility = View.GONE
         }
     }
 
     private fun login() {
-        viewModel.login(email.text.toString(), password.text.toString())
+        if(email.text.isNotEmpty() && password.text.isNotEmpty()){
+            progressBar.visibility = View.VISIBLE
+            viewModel.login(email.text.toString(), password.text.toString())
+        }
+        else{
+            Toast.makeText(
+                baseContext,
+                getString(R.string.fill_all_fields),
+                Toast.LENGTH_SHORT,
+            ).show()
+        }
     }
 }
