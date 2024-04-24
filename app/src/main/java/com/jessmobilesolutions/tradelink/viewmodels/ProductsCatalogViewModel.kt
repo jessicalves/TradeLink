@@ -3,41 +3,63 @@ package com.jessmobilesolutions.tradelink.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.jessmobilesolutions.tradelink.models.Product
 
 class ProductsCatalogViewModel : ViewModel() {
+    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     private val _products = MutableLiveData<List<Product>>()
-    val products: LiveData<List<Product>> get() = _products
+    val products: LiveData<List<Product>> = _products
 
     init {
-        _products.value = listOf(
-            Product(1, "Product 1", 10.0),
-            Product(2, "Product 2", 20.0),
-            Product(3, "Product 3", 30.0)
-        )
+        loadProducts()
+    }
+
+    private fun loadProducts() {
+        val auth = FirebaseAuth.getInstance()
+        val currentUser = auth.currentUser
+
+        if (currentUser != null) {
+            db.collection("users")
+                .document(currentUser.uid)
+                .collection("products")
+                .addSnapshotListener { value, error ->
+                    if (error != null) {
+                        // Handle error
+                        return@addSnapshotListener
+                    }
+
+                    val productList = mutableListOf<Product>()
+                    for (doc in value!!) {
+                        val name = doc.getString("name") ?: ""
+                        val price = doc.getDouble("price") ?: 0.0
+                        val product = Product(name, price)
+                        productList.add(product)
+                    }
+                    _products.value = productList
+                }
+        }
     }
 
     fun addProduct(product: Product) {
-        val productList = _products.value.orEmpty().toMutableList()
-        productList.add(product)
-        _products.value = productList
-    }
+        val currentList = _products.value.orEmpty().toMutableList()
+        currentList.add(product)
+        _products.value = currentList
 
-    fun updateProduct(product: Product) {
-        val productList = _products.value.orEmpty().toMutableList()
-        val index = productList.indexOfFirst { it.id == product.id }
-        if (index != -1) {
-            productList[index] = product
-            _products.value = productList
-        }
-    }
-
-    fun deleteProduct(productId: Int) {
-        val productList = _products.value.orEmpty().toMutableList()
-        val index = productList.indexOfFirst { it.id == productId }
-        if (index != -1) {
-            productList.removeAt(index)
-            _products.value = productList
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            db.collection("users")
+                .document(currentUser.uid)
+                .collection("products")
+                .add(product)
+                .addOnSuccessListener {
+                    //ok
+                }
+                .addOnFailureListener { e ->
+                    // Handle failure
+                }
         }
     }
 }
+

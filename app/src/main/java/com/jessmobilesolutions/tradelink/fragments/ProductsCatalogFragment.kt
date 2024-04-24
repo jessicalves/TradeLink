@@ -24,28 +24,24 @@ class ProductsCatalogFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_products_catalog, container, false)
-        
+
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         val dividerItemDecoration = DividerItemDecoration(recyclerView.context, LinearLayoutManager.VERTICAL)
         recyclerView.addItemDecoration(dividerItemDecoration)
-        
+
         productsAdapter = ProductsAdapter(emptyList())
         recyclerView.adapter = productsAdapter
-        
+
         viewModel.products.observe(viewLifecycleOwner) { products ->
             productsAdapter.products = products
             productsAdapter.notifyDataSetChanged()
         }
-        
+
         view.findViewById<FloatingActionButton>(R.id.fabAdd).setOnClickListener {
-            val product = Product( 
-                id = viewModel.products.value?.size ?: 0 + 1,
-                name = "New Product",
-                price = 0.0
-            )
-            viewModel.addProduct(product)
+            val dialog = AddProductDialog()
+            dialog.show(requireFragmentManager(), "AddProductDialog")
         }
 
         return view

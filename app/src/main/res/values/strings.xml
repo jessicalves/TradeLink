@@ -33,4 +33,11 @@
     <string name="title_catalog">Catalog</string>
     <string name="title_new_sale">New Sale</string>
     <string name="title_sales">Sales</string>
+    <string name="edit_text_product_name">Product Name</string>
+    <string name="edit_text_product_price">Product Price</string>
+    <string name="add_product">Add Product</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="msg_save">Product saved successfully.</string>
+    <string name="msg_fill_all_fields">Fill in all fields.</string>
 </resources>

@@ -34,4 +34,11 @@
     <string name="title_catalog">Catálogo</string>
     <string name="title_new_sale">Nova Venda</string>
     <string name="title_sales">Vendas</string>
+    <string name="edit_text_product_name">Nome do Produto</string>
+    <string name="edit_text_product_price">Preço do Produto</string>
+    <string name="add_product">Adicionar Produto</string>
+    <string name="btn_save">Salvar</string>
+    <string name="btn_cancel">Cancelar</string>
+    <string name="msg_save">Produto salvo com sucesso.</string>
+    <string name="msg_fill_all_fields">Preencha todos os campos.</string>
 </resources>
