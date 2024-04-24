@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/products_catalog">
+    
+    <fragment
+        android:id="@+id/products_catalog"
+        android:name="com.jessmobilesolutions.tradelink.fragments.ProductsCatalogFragment"
+        android:label="Products Catalog"
+        tools:layout="@layout/fragment_products_catalog" />
+
+    <fragment
+        android:id="@+id/new_sale"
+        android:name="com.jessmobilesolutions.tradelink.fragments.NewSaleFragment"
+        android:label="New Sale"
+        tools:layout="@layout/fragment_new_sale" />
+
+    <fragment
+        android:id="@+id/sales"
+        android:name="com.jessmobilesolutions.tradelink.fragments.SalesFragment"
+        android:label="Sales"
+        tools:layout="@layout/fragment_sales" />
+    
+    <fragment
+        android:id="@+id/visits_requests"
+        android:name="com.jessmobilesolutions.tradelink.fragments.VisitsRequestsFragment"
+        android:label="Visits Requests"
+        tools:layout="@layout/fragment_visits_requests" />
+
+    <action
+        android:id="@+id/action_visitsRequestsFragment_to_productsCatalogFragment"
+        app:destination="@id/visits_requests" />
+
+</navigation>

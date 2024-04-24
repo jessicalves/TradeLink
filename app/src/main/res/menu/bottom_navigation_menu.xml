@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/products_catalog"
+        android:title="@string/title_catalog"
+        android:icon="@drawable/ic_catalog"/>
+    <item
+        android:id="@+id/new_sale"
+        android:title="@string/title_new_sale"
+        android:icon="@drawable/ic_new_sale"/>
+    <item
+        android:id="@+id/sales"
+        android:title="@string/title_sales"
+        android:icon="@drawable/ic_sales"/>
+    <item
+        android:id="@+id/visits_requests"
+        android:title="@string/title_visits"
+        android:icon="@drawable/ic_visits"/>
+</menu>

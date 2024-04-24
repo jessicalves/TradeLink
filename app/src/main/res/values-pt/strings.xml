@@ -30,4 +30,8 @@
     <string name="btn_catalog">Catálogo de Produtos</string>
     <string name="btn_new_sale">Nova Venda</string>
     <string name="btn_sales">Vendas</string>
+    <string name="title_visits">Visitas</string>
+    <string name="title_catalog">Catálogo</string>
+    <string name="title_new_sale">Nova Venda</string>
+    <string name="title_sales">Vendas</string>
 </resources>
