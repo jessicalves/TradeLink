@@ -70,7 +70,7 @@ class NewRepresentativeActivity : AppCompatActivity() {
                 showProgressBar()
                 createNewUser()
             } else {
-                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,  getString(R.string.fill_all_fields), Toast.LENGTH_SHORT).show()
             }
         }
     }
