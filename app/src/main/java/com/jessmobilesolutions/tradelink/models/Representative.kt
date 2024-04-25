@@ -1,6 +1,7 @@
 package com.jessmobilesolutions.tradelink.models
 
 class Representative (
+    val uid: String,
     val name: String,
     val email: String,
     val representedCompany: String,

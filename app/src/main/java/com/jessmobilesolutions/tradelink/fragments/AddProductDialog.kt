@@ -14,6 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.jessmobilesolutions.tradelink.R
 import com.jessmobilesolutions.tradelink.models.Product
 import com.jessmobilesolutions.tradelink.viewmodels.ProductsCatalogViewModel
+import java.util.UUID
 
 class AddProductDialog : DialogFragment() {
     private val viewModel: ProductsCatalogViewModel by viewModels()
@@ -45,7 +46,8 @@ class AddProductDialog : DialogFragment() {
         val productPrice = etProductPrice.text.toString().toDoubleOrNull()
 
         if (productName.isNotEmpty() && productPrice != null) {
-            val product = Product(name = productName, price = productPrice)
+            val productId = UUID.randomUUID().toString()
+            val product = Product(id = productId, name = productName, price = productPrice)
             viewModel.addProduct(product)
             Toast.makeText(context, getString(R.string.msg_save), Toast.LENGTH_SHORT).show()
             dismiss()

@@ -32,9 +32,10 @@ class ProductsCatalogViewModel : ViewModel() {
 
                     val productList = mutableListOf<Product>()
                     for (doc in value!!) {
+                        val id = doc.getString("id") ?: ""
                         val name = doc.getString("name") ?: ""
                         val price = doc.getDouble("price") ?: 0.0
-                        val product = Product(name, price)
+                        val product = Product(id,name, price)
                         productList.add(product)
                     }
                     _products.value = productList
