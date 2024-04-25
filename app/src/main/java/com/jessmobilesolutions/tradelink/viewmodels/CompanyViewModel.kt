@@ -18,7 +18,7 @@ class CompanyViewModel : ViewModel() {
             .get()
             .addOnSuccessListener { querySnapshot ->
                 val representativeList = mutableListOf<Representative>()
-                for (document in querySnapshot) {
+                for (document in querySnapshot) { 
                     val uid = document.getString("uid") ?: ""
                     val name = document.getString("name") ?: ""
                     val email = document.getString("email") ?: ""
