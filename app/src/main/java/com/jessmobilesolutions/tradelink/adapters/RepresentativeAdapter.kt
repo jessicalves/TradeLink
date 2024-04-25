@@ -9,8 +9,10 @@ import com.jessmobilesolutions.tradelink.R
 import com.jessmobilesolutions.tradelink.models.Representative
 import java.util.*
 
-class RepresentativeAdapter(private var representatives: List<Representative>) :
-    RecyclerView.Adapter<RepresentativeAdapter.RepresentativeViewHolder>() {
+class RepresentativeAdapter(
+    private var representatives: List<Representative>,
+    private val itemClickListener: (Representative) -> Unit
+) : RecyclerView.Adapter<RepresentativeAdapter.RepresentativeViewHolder>() {
 
     inner class RepresentativeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val companyTextView: TextView = itemView.findViewById(R.id.companyTextView)
@@ -34,7 +36,9 @@ class RepresentativeAdapter(private var representatives: List<Representative>) :
     }
 
     override fun onBindViewHolder(holder: RepresentativeViewHolder, position: Int) {
-        holder.bind(representatives[position])
+        val representative = representatives[position]
+        holder.bind(representative)
+        holder.itemView.setOnClickListener { itemClickListener(representative) }
     }
 
     override fun getItemCount(): Int {

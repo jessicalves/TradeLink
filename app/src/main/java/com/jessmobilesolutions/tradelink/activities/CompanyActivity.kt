@@ -43,7 +43,10 @@ class CompanyActivity : AppCompatActivity() {
         val dividerItemDecoration = DividerItemDecoration(recyclerView.context, LinearLayoutManager.VERTICAL)
         recyclerView.addItemDecoration(dividerItemDecoration)
         
-        adapter = RepresentativeAdapter(emptyList()) 
+        adapter = RepresentativeAdapter(emptyList()) {
+//            openProductsForCompany(representative.companyId)
+            openProductsForCompany("1")
+        }
         recyclerView.adapter = adapter
 
         val searchEditText: EditText = findViewById(R.id.searchEditText)
@@ -68,5 +71,11 @@ class CompanyActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun openProductsForCompany(companyId: String) {
+        val intent = Intent(this, CompanyProductsActivity::class.java)
+        intent.putExtra("companyId", companyId)
+        startActivity(intent)
     }
 }

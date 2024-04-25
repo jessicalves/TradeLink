@@ -13,6 +13,9 @@
         android:theme="@style/Theme.TradeLink"
         tools:targetApi="31">
         <activity
+            android:name=".activities.CompanyProductsActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.RepresentativeActivity"
             android:exported="false" />
         <activity
