@@ -1,5 +1,6 @@
 package com.jessmobilesolutions.tradelink.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
@@ -8,11 +9,13 @@ import com.jessmobilesolutions.tradelink.R
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.jessmobilesolutions.tradelink.adapters.RepresentativeAdapter
 import com.jessmobilesolutions.tradelink.viewmodels.CompanyViewModel
 
@@ -56,6 +59,14 @@ class CompanyActivity : AppCompatActivity() {
 
         viewModel.representatives.observe(this) { representatives ->
             adapter.updateList(representatives)
+        }
+        val logoutButton: ImageButton = findViewById(R.id.btnLogout)
+        logoutButton.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
         }
     }
 }
