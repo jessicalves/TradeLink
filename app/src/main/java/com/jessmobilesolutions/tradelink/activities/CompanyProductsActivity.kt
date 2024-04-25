@@ -1,6 +1,7 @@
 package com.jessmobilesolutions.tradelink.activities
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -29,10 +30,14 @@ class CompanyProductsActivity : AppCompatActivity() {
         }
         
         val companyId = intent.getStringExtra("companyId")
+        val companyName = intent.getStringExtra("companyName")
+        
         if (companyId != null) {
             viewModel = ViewModelProvider(this).get(CompanyProductsViewModel::class.java)
-            
             viewModel.getProductsForCompany(companyId)
+            
+            val titleCompanyTextView = findViewById<TextView>(R.id.titleCompanyTextView)
+            titleCompanyTextView.text = getString(R.string.title_catalog_company, companyName)
 
             val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
             recyclerView.layoutManager = LinearLayoutManager(this)

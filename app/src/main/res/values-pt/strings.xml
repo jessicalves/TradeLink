@@ -41,4 +41,5 @@
     <string name="btn_cancel">Cancelar</string>
     <string name="msg_save">Produto salvo com sucesso.</string>
     <string name="msg_fill_all_fields">Preencha todos os campos.</string>
+    <string name="title_catalog_company">%1$s - Catálogo</string>
 </resources>

@@ -44,7 +44,7 @@ class CompanyActivity : AppCompatActivity() {
         recyclerView.addItemDecoration(dividerItemDecoration)
         
         adapter = RepresentativeAdapter(emptyList()) {
-            openProductsForCompany(it.uid)
+            openProductsForCompany(it.uid, it.representedCompany)
         }
         recyclerView.adapter = adapter
 
@@ -72,9 +72,10 @@ class CompanyActivity : AppCompatActivity() {
         }
     }
 
-    private fun openProductsForCompany(companyId: String) {
+    private fun openProductsForCompany(companyId: String, companyName: String) {
         val intent = Intent(this, CompanyProductsActivity::class.java)
         intent.putExtra("companyId", companyId)
+        intent.putExtra("companyName", companyName)
         startActivity(intent)
     }
 }
