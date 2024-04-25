@@ -44,8 +44,7 @@ class CompanyActivity : AppCompatActivity() {
         recyclerView.addItemDecoration(dividerItemDecoration)
         
         adapter = RepresentativeAdapter(emptyList()) {
-//            openProductsForCompany(representative.companyId)
-            openProductsForCompany("1")
+            openProductsForCompany(it.uid)
         }
         recyclerView.adapter = adapter
 
