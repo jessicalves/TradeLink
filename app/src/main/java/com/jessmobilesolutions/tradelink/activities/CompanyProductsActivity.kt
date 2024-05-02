@@ -1,5 +1,6 @@
 package com.jessmobilesolutions.tradelink.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -10,8 +11,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jessmobilesolutions.tradelink.R
+import com.jessmobilesolutions.tradelink.activities.ui.main.ClientRequestVisit
 import com.jessmobilesolutions.tradelink.adapters.ProductsAdapter
+import com.jessmobilesolutions.tradelink.fragments.AddProductDialog
 import com.jessmobilesolutions.tradelink.viewmodels.CompanyProductsViewModel
 
 class CompanyProductsActivity : AppCompatActivity() {
@@ -52,6 +56,12 @@ class CompanyProductsActivity : AppCompatActivity() {
                 adapter.products = products
                 adapter.notifyDataSetChanged()
             }
+
+           findViewById<FloatingActionButton>(R.id.fabVisit).setOnClickListener {
+               val intent = Intent(this, ClientRequestVisit::class.java)
+               startActivity(intent)
+            }
+            
         } else {
             // Tratar o caso em que não há ID da empresa
             // Talvez exibir uma mensagem de erro ou voltar para a tela anterior

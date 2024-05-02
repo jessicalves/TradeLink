@@ -41,4 +41,5 @@
     <string name="msg_save">Product saved successfully.</string>
     <string name="msg_fill_all_fields">Fill in all fields.</string>
     <string name="title_catalog_company">%1$s - Catalog</string>
+    <string name="title_request_visit">Agendar Visita</string>
 </resources>
