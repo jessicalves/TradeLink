@@ -12,12 +12,6 @@
         tools:layout="@layout/fragment_products_catalog" />
 
     <fragment
-        android:id="@+id/new_sale"
-        android:name="com.jessmobilesolutions.tradelink.fragments.NewSaleFragment"
-        android:label="New Sale"
-        tools:layout="@layout/fragment_new_sale" />
-
-    <fragment
         android:id="@+id/sales"
         android:name="com.jessmobilesolutions.tradelink.fragments.SalesFragment"
         android:label="Sales"
