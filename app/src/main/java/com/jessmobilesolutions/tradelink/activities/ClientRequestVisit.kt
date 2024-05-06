@@ -60,7 +60,8 @@ class ClientRequestVisit : AppCompatActivity() {
                     companyId.toString(),
                     editTextName.text.toString(),
                     editTextPhone.text.toString(),
-                    editTextAddress.text.toString()
+                    editTextAddress.text.toString(),
+                    false
                 )
                 clientRequestVisitViewModel.createNewVisit(visit)
 

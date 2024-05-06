@@ -39,4 +39,11 @@
             android:layout_marginBottom="8dp"
             android:textSize="14sp" />
     </LinearLayout>
+
+    <CheckBox
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:id="@+id/checkBoxVisit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>

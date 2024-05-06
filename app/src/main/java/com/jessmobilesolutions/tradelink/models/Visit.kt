@@ -6,4 +6,5 @@ class Visit (
     val clientName: String,
     val clientPhone: String,
     val clientAddress: String,
+    val visited: Boolean
 )

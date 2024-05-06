@@ -32,12 +32,13 @@ class VisitsRequestsViewModel : ViewModel() {
 
                     val visitsList = mutableListOf<Visit>()
                     for (doc in value!!) {
-                        val uid = doc.getString("uid") ?: ""
+                        val uid = doc.id
                         val clientName = doc.getString("clientName") ?: ""
                         val clientPhone = doc.getString("clientPhone") ?: ""
                         val clientAddress = doc.getString("clientAddress") ?: ""
                         val companyID = doc.getString("companyID") ?: ""
-                        val visit = Visit(uid,companyID, clientName, clientPhone,clientAddress)
+                        val visited = doc.getBoolean("visited") ?: false
+                        val visit = Visit(uid,companyID, clientName, clientPhone,clientAddress,visited)
                         visitsList.add(visit)
                     }
                     _visits.value = visitsList
