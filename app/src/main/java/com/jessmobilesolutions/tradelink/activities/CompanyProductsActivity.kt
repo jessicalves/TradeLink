@@ -2,6 +2,7 @@ package com.jessmobilesolutions.tradelink.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -31,14 +32,14 @@ class CompanyProductsActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        
+
         val companyId = intent.getStringExtra("companyId")
         val companyName = intent.getStringExtra("companyName")
-        
+
         if (companyId != null) {
             viewModel = ViewModelProvider(this).get(CompanyProductsViewModel::class.java)
             viewModel.getProductsForCompany(companyId)
-            
+
             val titleCompanyTextView = findViewById<TextView>(R.id.titleCompanyTextView)
             titleCompanyTextView.text = getString(R.string.title_catalog_company, companyName)
 
@@ -50,18 +51,25 @@ class CompanyProductsActivity : AppCompatActivity() {
 
             adapter = ProductsAdapter(emptyList())
             recyclerView.adapter = adapter
-            
+
             viewModel.products.observe(this) { products ->
                 adapter.products = products
                 adapter.notifyDataSetChanged()
+
+                val emptyTextView: TextView = findViewById(R.id.emptyTextView)
+                if (recyclerView.adapter!!.itemCount == 0) {
+                    emptyTextView.visibility = View.VISIBLE
+                } else {
+                    emptyTextView.visibility = View.GONE
+                }
             }
 
-           findViewById<FloatingActionButton>(R.id.fabVisit).setOnClickListener {
-               val intent = Intent(this, ClientRequestVisit::class.java)
-               intent.putExtra("companyId", companyId)
-               startActivity(intent)
+            findViewById<FloatingActionButton>(R.id.fabVisit).setOnClickListener {
+                val intent = Intent(this, ClientRequestVisit::class.java)
+                intent.putExtra("companyId", companyId)
+                startActivity(intent)
             }
-            
+
         } else {
             // Tratar o caso em que não há ID da empresa
             // Talvez exibir uma mensagem de erro ou voltar para a tela anterior
