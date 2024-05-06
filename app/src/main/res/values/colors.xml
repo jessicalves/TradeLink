@@ -5,4 +5,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="iconColorLight">#000000</color>
     <color name="iconColorDark">#FFFFFF</color>
+    <color name="card_background">#381E72</color>
+
 </resources>

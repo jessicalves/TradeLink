@@ -13,9 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jessmobilesolutions.tradelink.R
-import com.jessmobilesolutions.tradelink.activities.ui.main.ClientRequestVisit
+import com.jessmobilesolutions.tradelink.activities.ClientRequestVisit
 import com.jessmobilesolutions.tradelink.adapters.ProductsAdapter
-import com.jessmobilesolutions.tradelink.fragments.AddProductDialog
 import com.jessmobilesolutions.tradelink.viewmodels.CompanyProductsViewModel
 
 class CompanyProductsActivity : AppCompatActivity() {
@@ -59,6 +58,7 @@ class CompanyProductsActivity : AppCompatActivity() {
 
            findViewById<FloatingActionButton>(R.id.fabVisit).setOnClickListener {
                val intent = Intent(this, ClientRequestVisit::class.java)
+               intent.putExtra("companyId", companyId)
                startActivity(intent)
             }
             

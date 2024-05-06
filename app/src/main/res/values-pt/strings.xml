@@ -42,4 +42,9 @@
     <string name="msg_save">Produto salvo com sucesso.</string>
     <string name="msg_fill_all_fields">Preencha todos os campos.</string>
     <string name="title_catalog_company">%1$s - Catálogo</string>
+    <string name="edit_text_address">Endereço</string>
+    <string name="btn_request_visit">Solicitar Visita do Representante</string>
+    <string name="fill_data_message">Preencha seus dados para solicitar uma visita</string>
+    <string name="msg_fill_fields">Por favor, preencha todos os campos.</string>
+    <string name="msg_confirm_request_visit">Solicitação de vistia enviada com sucesso.</string>
 </resources>

@@ -41,5 +41,10 @@
     <string name="msg_save">Product saved successfully.</string>
     <string name="msg_fill_all_fields">Fill in all fields.</string>
     <string name="title_catalog_company">%1$s - Catalog</string>
-    <string name="title_request_visit">Agendar Visita</string>
+    <string name="title_request_visit" translatable="false">Agendar Visita</string>
+    <string name="edit_text_address">Address</string>
+    <string name="btn_request_visit">Request Representative Visit</string>
+    <string name="fill_data_message">Fill in your details to request a visit</string>
+    <string name="msg_fill_fields">Please fill in all fields.</string>
+    <string name="msg_confirm_request_visit">Visit request sent successfully.</string>
 </resources>

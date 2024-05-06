@@ -13,7 +13,7 @@
         android:theme="@style/Theme.TradeLink"
         tools:targetApi="31">
         <activity
-            android:name=".activities.ui.main.ClientRequestVisit"
+            android:name=".activities.ClientRequestVisit"
             android:exported="false" />
         <activity
             android:name=".activities.CompanyProductsActivity"
