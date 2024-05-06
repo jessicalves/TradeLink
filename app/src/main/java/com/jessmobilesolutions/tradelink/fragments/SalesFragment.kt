@@ -1,12 +1,16 @@
 package com.jessmobilesolutions.tradelink.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jessmobilesolutions.tradelink.R
+import com.jessmobilesolutions.tradelink.activities.NewClientActivity
+import com.jessmobilesolutions.tradelink.activities.NewSalesActivity
 import com.jessmobilesolutions.tradelink.viewmodels.SalesViewModel
 
 class SalesFragment : Fragment() {
@@ -20,14 +24,14 @@ class SalesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_sales, container, false)
-    }
+        var view = inflater.inflate(R.layout.fragment_sales, container, false)
+        var fabNewSale: FloatingActionButton = view.findViewById(R.id.fabNewSale)
 
-    companion object {
+        fabNewSale.setOnClickListener {
+            var intent = Intent(requireContext(), NewSalesActivity::class.java)
+            startActivity(intent)
+        }
 
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SalesFragment().apply {
-            }
+        return view
     }
 }
