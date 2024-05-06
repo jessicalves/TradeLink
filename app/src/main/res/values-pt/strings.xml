@@ -47,4 +47,5 @@
     <string name="fill_data_message">Preencha seus dados para solicitar uma visita</string>
     <string name="msg_fill_fields">Por favor, preencha todos os campos.</string>
     <string name="msg_confirm_request_visit">Solicitação de vistia enviada com sucesso.</string>
+    <string name="text_view_title_visit">Solicitações de Visita</string>
 </resources>

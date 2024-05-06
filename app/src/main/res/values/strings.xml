@@ -47,4 +47,5 @@
     <string name="fill_data_message">Fill in your details to request a visit</string>
     <string name="msg_fill_fields">Please fill in all fields.</string>
     <string name="msg_confirm_request_visit">Visit request sent successfully.</string>
+    <string name="text_view_title_visit">Visit requests</string>
 </resources>
