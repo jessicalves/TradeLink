@@ -3,6 +3,9 @@ package com.jessmobilesolutions.tradelink.activities
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -21,6 +24,8 @@ import java.util.Locale
 class NewSalesActivity : AppCompatActivity() {
     private lateinit var viewModel: NewSalesViewModel
     private lateinit var itemAdapter: ItemSalesAdapter
+    private lateinit var totalTextView: TextView
+    private lateinit var btnSave: ImageButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -31,7 +36,7 @@ class NewSalesActivity : AppCompatActivity() {
             insets
         }
         setupFieldDate()
-        setupRecycleView()
+        setupView()
     }
 
     private fun setupFieldDate() {
@@ -53,19 +58,47 @@ class NewSalesActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupRecycleView() {
+    private fun setupView() {
         viewModel = ViewModelProvider(this)[NewSalesViewModel::class.java]
         viewModel.loadProducts()
 
         val recyclerViewItems: RecyclerView = findViewById(R.id.recyclerViewItems)
         recyclerViewItems.layoutManager = LinearLayoutManager(this)
 
-        itemAdapter = ItemSalesAdapter(emptyList())
+        totalTextView = findViewById(R.id.textViewTotal)
+        totalTextView.text = "Total R$ 0.00"
+
+        btnSave = findViewById(R.id.btnSave)
+        btnSave.setOnClickListener { saveSale() }
+
+        itemAdapter = ItemSalesAdapter(emptyList(), totalTextView)
         recyclerViewItems.adapter = itemAdapter
 
         viewModel.products.observe(this) { products ->
             itemAdapter.products = products
             itemAdapter.notifyDataSetChanged()
         }
+    }
+
+    private fun saveSale() {
+        val clientName = findViewById<EditText>(R.id.editTextClientName).text.toString()
+        val saleDate = findViewById<EditText>(R.id.editTextDate).text.toString()
+        val soldProducts = itemAdapter.soldProductsList.map { it.product to it.quantity }
+        val total = totalTextView.text.toString()
+
+        viewModel.saveSale(
+            clientName,
+            saleDate,
+            total,
+            soldProducts,
+            {
+                Toast.makeText(this, "Venda salva com sucesso.", Toast.LENGTH_SHORT).show()
+                finish()
+            },
+            { error ->
+                Toast.makeText(this, "Erro ao salvar a venda: ${error.toString()}", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+        )
     }
 }
