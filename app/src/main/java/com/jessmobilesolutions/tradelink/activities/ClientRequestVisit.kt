@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.jessmobilesolutions.tradelink.R
 import com.jessmobilesolutions.tradelink.models.Product
 import com.jessmobilesolutions.tradelink.models.Visit
+import com.jessmobilesolutions.tradelink.utils.PhoneNumberFormattingTextWatcher
 import com.jessmobilesolutions.tradelink.viewmodels.ClientRequestVisitViewModel
 import java.util.UUID
 
@@ -69,5 +70,8 @@ class ClientRequestVisit : AppCompatActivity() {
                 finish()
             }
         }
+
+        val editText = findViewById<EditText>(R.id.editTextPhone)
+        editText.addTextChangedListener(PhoneNumberFormattingTextWatcher(editText))
     }
 }
