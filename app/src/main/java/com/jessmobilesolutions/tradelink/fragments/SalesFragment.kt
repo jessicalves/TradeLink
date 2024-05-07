@@ -1,5 +1,6 @@
 package com.jessmobilesolutions.tradelink.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jessmobilesolutions.tradelink.R
+import com.jessmobilesolutions.tradelink.activities.NewSalesActivity
 import com.jessmobilesolutions.tradelink.adapters.SalesAdapter
 import com.jessmobilesolutions.tradelink.viewmodels.SalesViewModel
 
@@ -34,6 +37,13 @@ class SalesFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_sales, container, false)
         recyclerView = view.findViewById(R.id.recyclerViewSales)
         setupRecyclerView()
+
+        var fabNewSale: FloatingActionButton = view.findViewById(R.id.fabNewSale)
+
+        fabNewSale.setOnClickListener {
+            var intent = Intent(requireContext(), NewSalesActivity::class.java)
+            startActivity(intent)
+        }
         return view
     }
 
