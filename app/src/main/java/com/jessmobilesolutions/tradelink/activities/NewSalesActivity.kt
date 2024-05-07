@@ -31,21 +31,7 @@ class NewSalesActivity : AppCompatActivity() {
             insets
         }
         setupFieldDate()
-
-        viewModel = ViewModelProvider(this)[NewSalesViewModel::class.java]
-        viewModel.loadProducts()
-
-        val recyclerViewItems: RecyclerView = findViewById(R.id.recyclerViewItems)
-        recyclerViewItems.layoutManager = LinearLayoutManager(this)
-
-        itemAdapter = ItemSalesAdapter(emptyList())
-        recyclerViewItems.adapter = itemAdapter
-
-        viewModel.products.observe(this) { products ->
-            itemAdapter.products = products
-            itemAdapter.notifyDataSetChanged()
-        }
-
+        setupRecycleView()
     }
 
     private fun setupFieldDate() {
@@ -64,6 +50,22 @@ class NewSalesActivity : AppCompatActivity() {
                 editTextDate.setText(dateFormatter.format(selectedDate.time))
             }, year, month, day)
             datePickerDialog.show()
+        }
+    }
+
+    private fun setupRecycleView() {
+        viewModel = ViewModelProvider(this)[NewSalesViewModel::class.java]
+        viewModel.loadProducts()
+
+        val recyclerViewItems: RecyclerView = findViewById(R.id.recyclerViewItems)
+        recyclerViewItems.layoutManager = LinearLayoutManager(this)
+
+        itemAdapter = ItemSalesAdapter(emptyList())
+        recyclerViewItems.adapter = itemAdapter
+
+        viewModel.products.observe(this) { products ->
+            itemAdapter.products = products
+            itemAdapter.notifyDataSetChanged()
         }
     }
 }
