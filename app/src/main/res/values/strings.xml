@@ -50,4 +50,5 @@
     <string name="text_view_title_visit">Visit requests</string>
     <string name="text_view_new_sales">New Sales</string>
     <string name="msg_none">No products in the catalog.</string>
+    <string name="btn_add_product">Add Product</string>
 </resources>

@@ -7,12 +7,20 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.jessmobilesolutions.tradelink.R
+import com.jessmobilesolutions.tradelink.adapters.ItemSalesAdapter
+import com.jessmobilesolutions.tradelink.viewmodels.CompanyProductsViewModel
+import com.jessmobilesolutions.tradelink.viewmodels.NewSalesViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
 class NewSalesActivity : AppCompatActivity() {
+    private lateinit var viewModel: NewSalesViewModel
+    private lateinit var itemAdapter: ItemSalesAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -22,8 +30,22 @@ class NewSalesActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         setupFieldDate()
+
+        viewModel = ViewModelProvider(this)[NewSalesViewModel::class.java]
+        viewModel.loadProducts()
+
+        val recyclerViewItems: RecyclerView = findViewById(R.id.recyclerViewItems)
+        recyclerViewItems.layoutManager = LinearLayoutManager(this)
+
+        itemAdapter = ItemSalesAdapter(emptyList())
+        recyclerViewItems.adapter = itemAdapter
+
+        viewModel.products.observe(this) { products ->
+            itemAdapter.products = products
+            itemAdapter.notifyDataSetChanged()
+        }
+
     }
 
     private fun setupFieldDate() {

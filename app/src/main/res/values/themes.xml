@@ -7,4 +7,14 @@
     </style>
 
     <style name="Theme.TradeLink" parent="Base.Theme.TradeLink" />
+
+    <style name="ButtonWithoutCorner" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/button_without_corner_background</item>
+    </style>
+
+    <style name="TransparentButton" parent="Widget.AppCompat.Button">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>
