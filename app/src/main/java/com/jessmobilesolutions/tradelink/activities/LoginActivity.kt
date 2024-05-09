@@ -46,6 +46,7 @@ class LoginActivity : AppCompatActivity() {
     private fun setupView() {
         val loginType = intent.getStringExtra("login_type")
         val newRegister = findViewById<TextView>(R.id.textViewRegister)
+        val resetPassword = findViewById<TextView>(R.id.textViewRecover)
         var intent = Intent(this, NewClientActivity::class.java)
         auth = Firebase.auth
         btnLogin = findViewById(R.id.btnLogin)
@@ -76,6 +77,10 @@ class LoginActivity : AppCompatActivity() {
 
         btnLogin.setOnClickListener {
             login()
+        }
+
+        resetPassword.setOnClickListener { 
+            startActivity(Intent(this, ResetPasswordActivity::class.java))
         }
     }
 
