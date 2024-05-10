@@ -9,9 +9,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
-        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
 
         <TextView
             android:id="@+id/textViewTitle"
@@ -109,16 +109,28 @@
             android:inputType="textPassword"
             app:layout_constraintBottom_toTopOf="@+id/btnNewRegister"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/togglePasswordVisibility"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/togglePasswordVisibility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="#00FFFFFF"
+            android:src="@drawable/ic_visibility_off"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/editTextPassword" />
 
         <Button
             android:id="@+id/btnNewRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="80dp"
-            android:layout_marginTop="16dp"
             android:text="@string/btn_new_register"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -128,9 +140,9 @@
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:indeterminateTint="@color/progress_bar"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
+            android:indeterminateTint="@color/progress_bar"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/btnNewRegister"
             app:layout_constraintEnd_toEndOf="parent"

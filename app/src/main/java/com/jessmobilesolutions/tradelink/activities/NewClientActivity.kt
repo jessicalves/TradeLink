@@ -1,9 +1,14 @@
 package com.jessmobilesolutions.tradelink.activities
 
 import android.os.Bundle
+import android.text.Selection
+import android.text.Spannable
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -24,6 +29,7 @@ class NewClientActivity : AppCompatActivity() {
     private lateinit var phone: EditText
     private lateinit var btnRegister: Button
     private lateinit var progressBar: ProgressBar
+    private lateinit var togglePasswordVisibilityButton: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +54,7 @@ class NewClientActivity : AppCompatActivity() {
         phone = findViewById(R.id.editTextPhone)
         btnRegister = findViewById(R.id.btnNewRegister)
         progressBar = findViewById(R.id.progressBar)
+        togglePasswordVisibilityButton = findViewById(R.id.togglePasswordVisibility)
 
         btnRegister.setOnClickListener {
             if (validateFields()) {
@@ -55,6 +62,21 @@ class NewClientActivity : AppCompatActivity() {
                 createNewUser()
             } else {
                 Toast.makeText(this,  getString(R.string.fill_all_fields), Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        togglePasswordVisibilityButton.setOnClickListener {
+            val isVisible = password.transformationMethod == HideReturnsTransformationMethod.getInstance()
+            if (isVisible) {
+                password.transformationMethod = PasswordTransformationMethod.getInstance()
+                togglePasswordVisibilityButton.setImageResource(R.drawable.ic_visibility_off)
+            } else {
+                password.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                togglePasswordVisibilityButton.setImageResource(R.drawable.ic_visibility)
+            }
+            val position = password.text.length
+            password.text?.let {
+                Selection.setSelection(it as Spannable?, position)
             }
         }
     }
