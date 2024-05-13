@@ -21,6 +21,7 @@ class VisitsAdapter(var visits: List<Visit>) : RecyclerView.Adapter<VisitsAdapte
         val checkBox: CheckBox = itemView.findViewById(R.id.checkBoxVisit)
         val clientName: TextView = itemView.findViewById(R.id.clientName)
         val clientPhone: TextView = itemView.findViewById(R.id.clientPhone)
+        val clientAddress: TextView = itemView.findViewById(R.id.clientAddress)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -37,7 +38,7 @@ class VisitsAdapter(var visits: List<Visit>) : RecyclerView.Adapter<VisitsAdapte
         val visit = visits[position]
         holder.clientName.text = visit.clientName
         holder.clientPhone.text = visit.clientPhone
-
+        holder.clientAddress.text = visit.clientAddress
         val visitRef = db.collection("users")
             .document(currentUser!!.uid)
             .collection("visits")
