@@ -27,7 +27,7 @@ Para utilizar o Projeto TradeLink, siga estas etapas:
 
 ## Screenshots
 
-![Captura de Tela 1](![Screenshot_20240514_101634](https://github.com/jessicalves/TradeLink/assets/48735842/0fd25643-0b08-46e2-abf2-4d6ca1a97cbb))
+![Captura de Tela 1](![Screenshot_20240514_101634](https://github.com/jessicalves/TradeLink/assets/48735842/a9a85df9-d255-41b1-90ae-46373800a0bc))
 ![Captura de Tela 2](![Screenshot_20240514_100530](https://github.com/jessicalves/TradeLink/assets/48735842/676dfdcc-949c-4508-aea6-78efb55ada8f))
 ![Captura de Tela 3](![Screenshot_20240514_100556](https://github.com/jessicalves/TradeLink/assets/48735842/0679a0f3-b2f8-428c-ad02-ec5c91c48f7a))
 ![Captura de Tela 4](![Screenshot_20240514_100614](https://github.com/jessicalves/TradeLink/assets/48735842/926c133f-4f6c-4229-b9d2-256c537de9f2))
