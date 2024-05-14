@@ -56,4 +56,5 @@
     <string name="reset_password_button">Reset Password</string>
     <string name="lock_icon_description">Lock Icon</string>
     <string name="enter_email_instruction">Please enter the email associated with your account</string>
+    <string name="password_requirements">The password must be at least 6 characters long and contain at least one number.</string>
 </resources>

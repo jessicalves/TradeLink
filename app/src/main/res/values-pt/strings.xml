@@ -56,4 +56,5 @@
     <string name="reset_password_button">Resetar Senha</string>
     <string name="lock_icon_description">Ícone de Cadeado</string>
     <string name="enter_email_instruction">Por favor, insira o email associado à sua conta</string>
+    <string name="password_requirements">A senha deve ter pelo menos 6 caracteres e conter pelo menos um número.</string>
 </resources>
