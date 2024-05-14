@@ -7,6 +7,7 @@ import android.text.Spannable
 import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.util.Patterns
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -26,7 +27,7 @@ import com.jessmobilesolutions.tradelink.viewmodels.NewRepresentativeViewModel
 class NewRepresentativeActivity : AppCompatActivity() {
 
     private lateinit var viewModel: NewRepresentativeViewModel
-    private lateinit var email: EditText
+    private lateinit var editTextEmail: EditText
     private lateinit var editTextPassword: EditText
     private lateinit var name: EditText
     private lateinit var company: EditText
@@ -52,21 +53,24 @@ class NewRepresentativeActivity : AppCompatActivity() {
     }
 
     private fun validateFields(): Boolean {
+        val email = editTextEmail.text.trim()
         val password = editTextPassword.text.trim()
-        return email.text.isNotBlank() &&
+        return isValidEmail(email.toString()) &&
                 password.length >= 6 &&
                 password.matches(Regex(".*\\d.*")) &&
                 name.text.isNotBlank() &&
                 city.text.isNotBlank() &&
-                company.text.isNotBlank() &&
-                niche.text.isNotBlank() &&
                 state.text.isNotBlank() &&
                 phone.text.isNotBlank()
     }
 
+    private fun isValidEmail(email: String): Boolean {
+        return email.isNotBlank() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
 
     private fun setupView() {
-        email = findViewById(R.id.editTextEmail)
+        editTextEmail = findViewById(R.id.editTextEmail)
         editTextPassword = findViewById(R.id.editTextPassword)
         name = findViewById(R.id.editTextName)
         city = findViewById(R.id.editTextCity)
@@ -124,11 +128,26 @@ class NewRepresentativeActivity : AppCompatActivity() {
                 }
             }
         })
+
+        editTextEmail.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val email = s.toString().trim()
+                if (!isValidEmail(email)) {
+                    editTextEmail.error = getString(R.string.invalid_email)
+                } else {
+                    editTextEmail.error = null
+                }
+            }
+        })
     }
 
     private fun createNewUser() {
         viewModel.createNewUser(
-            email.text.toString(),
+            editTextEmail.text.toString(),
             editTextPassword.text.toString(),
             name.text.toString(),
             company.text.toString(),
