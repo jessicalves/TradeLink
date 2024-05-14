@@ -62,6 +62,6 @@
     <string name="save_sale">Venda salva com sucesso.</string>
     <string name="error_save_sale">Erro ao salvar a venda: %1$s</string>
     <string name="reset_email_empty">Por favor, insira seu email.</string>
-    <string name="reset_password_sucess">Um email de recuperação foi enviado para %1$s</string>
+    <string name="reset_password_success">Um email de recuperação foi enviado para %1$s</string>
     <string name="reset_password_error">Falha ao enviar email de recuperação. Verifique seu email e tente novamente.</string>
 </resources>

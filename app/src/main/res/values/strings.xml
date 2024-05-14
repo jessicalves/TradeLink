@@ -45,7 +45,7 @@
     <string name="edit_text_address">Address</string>
     <string name="btn_request_visit">Request Representative Visit</string>
     <string name="fill_data_message">Fill in your details to request a visit</string>
-    <string name="msg_fill_fields">Please fill in all fields.</string>
+    <string name="msg_fill_fields">Fill in all fields.</string>
     <string name="msg_confirm_request_visit">Visit request sent successfully.</string>
     <string name="text_view_title_visit">Visit requests</string>
     <string name="text_view_new_sales">New Sales</string>
@@ -62,6 +62,6 @@
     <string name="save_sale">Successfully saved sale.</string>
     <string name="error_save_sale">Error saving sale: %1$s</string>
     <string name="reset_email_empty">Please enter your email.</string>
-    <string name="reset_password_sucess">A recovery email has been sent to %1$s</string>
+    <string name="reset_password_success">A recovery email has been sent to %1$s</string>
     <string name="reset_password_error">Failed to send recovery email. Check your email and try again.</string>
 </resources>

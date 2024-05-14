@@ -36,7 +36,7 @@ class ResetPasswordActivity : AppCompatActivity() {
             auth.sendPasswordResetEmail(email)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(this, getString(R.string.reset_password_sucess, email), Toast.LENGTH_SHORT)
+                        Toast.makeText(this, getString(R.string.reset_password_success, email), Toast.LENGTH_SHORT)
                             .show()
                         finish()
                     } else {
