@@ -29,20 +29,20 @@ class ResetPasswordActivity : AppCompatActivity() {
             val email = findViewById<EditText>(R.id.editTextEmail).text.toString().trim()
 
             if (email.isEmpty()) {
-                Toast.makeText(this, "Por favor, insira seu email.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.reset_email_empty), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             auth.sendPasswordResetEmail(email)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(this, "Um email de recuperação foi enviado para $email", Toast.LENGTH_SHORT)
+                        Toast.makeText(this, getString(R.string.reset_password_sucess, email), Toast.LENGTH_SHORT)
                             .show()
                         finish()
                     } else {
                         Toast.makeText(
                             this,
-                            "Falha ao enviar email de recuperação. Verifique seu email e tente novamente.",
+                            getString(R.string.reset_password_error),
                             Toast.LENGTH_SHORT
                         ).show()
                     }

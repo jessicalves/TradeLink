@@ -58,4 +58,10 @@
     <string name="enter_email_instruction">Por favor, insira o email associado à sua conta</string>
     <string name="password_requirements">A senha deve ter pelo menos 6 caracteres e conter pelo menos um número.</string>
     <string name="invalid_email">E-mail Inválido</string>
+    <string name="authentication_failed">Falha na autenticação.</string>
+    <string name="save_sale">Venda salva com sucesso.</string>
+    <string name="error_save_sale">Erro ao salvar a venda: %1$s</string>
+    <string name="reset_email_empty">Por favor, insira seu email.</string>
+    <string name="reset_password_sucess">Um email de recuperação foi enviado para %1$s</string>
+    <string name="reset_password_error">Falha ao enviar email de recuperação. Verifique seu email e tente novamente.</string>
 </resources>

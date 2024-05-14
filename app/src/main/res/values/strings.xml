@@ -58,4 +58,10 @@
     <string name="enter_email_instruction">Please enter the email associated with your account</string>
     <string name="password_requirements">The password must be at least 6 characters long and contain at least one number.</string>
     <string name="invalid_email">Invalid email</string>
+    <string name="authentication_failed">Authentication failed.</string>
+    <string name="save_sale">Successfully saved sale.</string>
+    <string name="error_save_sale">Error saving sale: %1$s</string>
+    <string name="reset_email_empty">Please enter your email.</string>
+    <string name="reset_password_sucess">A recovery email has been sent to %1$s</string>
+    <string name="reset_password_error">Failed to send recovery email. Check your email and try again.</string>
 </resources>

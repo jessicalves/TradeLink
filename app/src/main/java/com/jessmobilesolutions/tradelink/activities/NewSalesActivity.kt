@@ -92,11 +92,11 @@ class NewSalesActivity : AppCompatActivity() {
             total,
             soldProducts,
             {
-                Toast.makeText(this, "Venda salva com sucesso.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.save_sale), Toast.LENGTH_SHORT).show()
                 finish()
             },
             { error ->
-                Toast.makeText(this, "Erro ao salvar a venda: ${error.toString()}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.error_save_sale, error.toString()), Toast.LENGTH_SHORT).show()
                 finish()
             }
         )

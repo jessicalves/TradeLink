@@ -21,7 +21,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.jessmobilesolutions.tradelink.R
-import com.jessmobilesolutions.tradelink.viewmodels.NewClientViewModel
 import com.jessmobilesolutions.tradelink.viewmodels.NewRepresentativeViewModel
 
 class NewRepresentativeActivity : AppCompatActivity() {
@@ -67,8 +66,7 @@ class NewRepresentativeActivity : AppCompatActivity() {
     private fun isValidEmail(email: String): Boolean {
         return email.isNotBlank() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
-
-
+    
     private fun setupView() {
         editTextEmail = findViewById(R.id.editTextEmail)
         editTextPassword = findViewById(R.id.editTextPassword)
@@ -90,21 +88,29 @@ class NewRepresentativeActivity : AppCompatActivity() {
                 Toast.makeText(this, getString(R.string.fill_all_fields), Toast.LENGTH_SHORT).show()
             }
         }
-        togglePasswordVisibilityButton.setOnClickListener {
-            val isVisible = editTextPassword.transformationMethod == HideReturnsTransformationMethod.getInstance()
-            if (isVisible) {
-                editTextPassword.transformationMethod = PasswordTransformationMethod.getInstance()
-                togglePasswordVisibilityButton.setImageResource(R.drawable.ic_visibility_off)
-            } else {
-                editTextPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
-                togglePasswordVisibilityButton.setImageResource(R.drawable.ic_visibility)
-            }
-            val position = editTextPassword.text.length
-            editTextPassword.text?.let {
-                Selection.setSelection(it as Spannable?, position)
-            }
-        }
+        togglePasswordVisibility()
+        setupPasswordValidation()
+        setupEmailValidation()
+    }
 
+    private fun setupEmailValidation() {
+        editTextEmail.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val email = s.toString().trim()
+                if (!isValidEmail(email)) {
+                    editTextEmail.error = getString(R.string.invalid_email)
+                } else {
+                    editTextEmail.error = null
+                }
+            }
+        })
+    }
+
+    private fun setupPasswordValidation() {
         editTextPassword.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
 
@@ -128,21 +134,23 @@ class NewRepresentativeActivity : AppCompatActivity() {
                 }
             }
         })
+    }
 
-        editTextEmail.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {}
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val email = s.toString().trim()
-                if (!isValidEmail(email)) {
-                    editTextEmail.error = getString(R.string.invalid_email)
-                } else {
-                    editTextEmail.error = null
-                }
+    private fun togglePasswordVisibility() {
+        togglePasswordVisibilityButton.setOnClickListener {
+            val isVisible = editTextPassword.transformationMethod == HideReturnsTransformationMethod.getInstance()
+            if (isVisible) {
+                editTextPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+                togglePasswordVisibilityButton.setImageResource(R.drawable.ic_visibility_off)
+            } else {
+                editTextPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                togglePasswordVisibilityButton.setImageResource(R.drawable.ic_visibility)
             }
-        })
+            val position = editTextPassword.text.length
+            editTextPassword.text?.let {
+                Selection.setSelection(it as Spannable?, position)
+            }
+        }
     }
 
     private fun createNewUser() {

@@ -19,7 +19,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.marginEnd
 import androidx.lifecycle.ViewModelProvider
 import com.jessmobilesolutions.tradelink.R
 import com.jessmobilesolutions.tradelink.viewmodels.NewClientViewModel
@@ -69,7 +68,12 @@ class NewClientActivity : AppCompatActivity() {
                 Toast.makeText(this, getString(R.string.fill_all_fields), Toast.LENGTH_SHORT).show()
             }
         }
+        togglePasswordVisibility()
+        setupPasswordValidation()
+        setupEmailValidation()
+    }
 
+    private fun togglePasswordVisibility() {
         togglePasswordVisibilityButton.setOnClickListener {
             val isVisible = editTextPassword.transformationMethod == HideReturnsTransformationMethod.getInstance()
             if (isVisible) {
@@ -84,7 +88,26 @@ class NewClientActivity : AppCompatActivity() {
                 Selection.setSelection(it as Spannable?, position)
             }
         }
+    }
 
+    private fun setupEmailValidation() {
+        editTextEmail.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val email = s.toString().trim()
+                if (!isValidEmail(email)) {
+                    editTextEmail.error = getString(R.string.invalid_email)
+                } else {
+                    editTextEmail.error = null
+                }
+            }
+        })
+    }
+
+    private fun setupPasswordValidation() {
         editTextPassword.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
 
@@ -108,21 +131,6 @@ class NewClientActivity : AppCompatActivity() {
                 }
             }
         })
-
-        editTextEmail.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {}
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val email = s.toString().trim()
-                if (!isValidEmail(email)) {
-                    editTextEmail.error = getString(R.string.invalid_email)
-                } else {
-                    editTextEmail.error = null
-                }
-            }
-        })
     }
 
     private fun validateFields(): Boolean {
@@ -140,7 +148,7 @@ class NewClientActivity : AppCompatActivity() {
     private fun isValidEmail(email: String): Boolean {
         return email.isNotBlank() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
-    
+
     private fun createNewUser() {
         viewModel.createNewUser(
             editTextEmail.text.toString(),
