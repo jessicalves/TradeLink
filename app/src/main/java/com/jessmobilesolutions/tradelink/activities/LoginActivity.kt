@@ -58,19 +58,22 @@ class LoginActivity : AppCompatActivity() {
         val resetPassword = findViewById<TextView>(R.id.textViewRecover)
 
         val loginType = intent.getStringExtra("login_type")
+
         loginType?.let {
             when (it) {
                 "client" -> {
                     findViewById<TextView>(R.id.textViewTitle).text = getString(R.string.text_view_client)
+                    intent = Intent(this, NewClientActivity::class.java)
                 }
+
                 "representative" -> {
                     findViewById<TextView>(R.id.textViewTitle).text = getString(R.string.text_view_representative)
+                    intent = Intent(this, NewRepresentativeActivity::class.java)
                 }
             }
         }
-
         newRegister.setOnClickListener {
-            startActivity(Intent(this, NewClientActivity::class.java))
+            startActivity(intent)
         }
 
         btnLogin.setOnClickListener {
