@@ -1,7 +1,8 @@
 package com.jessmobilesolutions.tradelink.models
 
-class Product(
+data class Product(
     val id: String,
     val name: String,
-    val price: Double
+    val price: Double,
+    var image: String? = null
 )

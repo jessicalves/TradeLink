@@ -1,11 +1,13 @@
 package com.jessmobilesolutions.tradelink.fragments
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
 import com.jessmobilesolutions.tradelink.R
 import com.jessmobilesolutions.tradelink.activities.LoginActivity
 import com.jessmobilesolutions.tradelink.adapters.ProductsAdapter
@@ -58,5 +61,19 @@ class ProductsCatalogFragment : Fragment() {
         }
 
         return view
+    }
+
+    fun uploadImageAndAddProduct(productId: String, product: Product, productImageUri: Uri) {
+        val ref = FirebaseStorage.getInstance().getReference("/products/$productId")
+        ref.putFile(productImageUri)
+            .addOnSuccessListener {
+                ref.downloadUrl.addOnSuccessListener {
+                    product.image = it.toString()
+                    viewModel.addProduct(product)
+                }
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Failed to upload image", Toast.LENGTH_SHORT).show()
+            }
     }
 }

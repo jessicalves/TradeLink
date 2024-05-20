@@ -5,6 +5,13 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp">
+    
+    <ImageView
+        android:id="@+id/ivProductImage"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_add_photo" />
 
     <EditText
         android:id="@+id/etProductName"

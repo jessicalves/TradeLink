@@ -35,7 +35,8 @@ class ProductsCatalogViewModel : ViewModel() {
                         val id = doc.getString("id") ?: ""
                         val name = doc.getString("name") ?: ""
                         val price = doc.getDouble("price") ?: 0.0
-                        val product = Product(id,name, price)
+                        val image = doc.getString("image") ?: 0.0
+                        val product = Product(id,name, price, image.toString())
                         productList.add(product)
                     }
                     _products.value = productList
