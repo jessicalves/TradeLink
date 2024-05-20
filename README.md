@@ -30,7 +30,7 @@ Para utilizar o Projeto TradeLink, siga estas etapas:
 <img src="https://github.com/jessicalves/TradeLink/assets/48735842/a9a85df9-d255-41b1-90ae-46373800a0bc.png" width="200">
 <img src="https://github.com/jessicalves/TradeLink/assets/48735842/676dfdcc-949c-4508-aea6-78efb55ada8f.png" width="200">
 <img src="https://github.com/jessicalves/TradeLink/assets/48735842/0679a0f3-b2f8-428c-ad02-ec5c91c48f7a.png" width="200">
-<img src="hCaptura de Tela 2024-05-20 às 13 24 18" src="https://github.com/jessicalves/TradeLink/assets/48735842/b3174871-c622-4fbf-b8c7-da6026e03fc9" width="200">
+<img src="Captura de Tela 2024-05-20 às 13 24 18" src="https://github.com/jessicalves/TradeLink/assets/48735842/b3174871-c622-4fbf-b8c7-da6026e03fc9" width="200">
 <img src="https://github.com/jessicalves/TradeLink/assets/48735842/ab4bdb3b-c4ef-47b6-a6dc-adf30ec19769.png" width="200">
 <img src="Captura de Tela 2024-05-20 às 13 24 08" src="https://github.com/jessicalves/TradeLink/assets/48735842/b13d9f3b-6382-4ef6-8818-41ffa7c35c5a" width="200">
 <img src="https://github.com/jessicalves/TradeLink/assets/48735842/aa0a6964-d247-46e5-b6e7-c0d7daf22cd7.png" width="200">
